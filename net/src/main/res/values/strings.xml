@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">net</string>
+
+    <string name="net_err_unknowhost">无法连接主服务器,请检查网络后重试.</string>
+    <string name="net_err_timeout">网络连接超时.</string>
+    <string name="net_err_connect">网络连接异常.</string>
+    <string name="net_err_runtime">运行异常，请稍后重试.</string>
+    <string name="net_err_null">网络请求异常，请稍后重试.\n错误信息：</string>
+    <string name="net_err_code">网络请求异常 %d</string>
+
+</resources>
