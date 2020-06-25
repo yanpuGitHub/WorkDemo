@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+def ext = rootProject.ext
+def cfg = ext.android
+def keys = ext.keys
+
+android {
+    compileSdkVersion cfg.compileSdkVersion
+    buildToolsVersion cfg.buildToolsVersion
+    defaultConfig {
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
+
+        consumerProguardFiles 'proguard-rules.pro'//把混淆文件打入aar
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+//apply from: "../../../env/dependencies.gradle"
+dependencies {
+//    compileOnly 'dc.common:logger:latest.integration'
+//    compileOnly "dc.android:bridge:$ext.bridgeVersion"
+
+//    implementation "com.piaoshen.sdk:alipay:$ext.alipayVersion@aar"
+}
+
+//version = "1.0.0"
+apply from: "../config.gradle"
