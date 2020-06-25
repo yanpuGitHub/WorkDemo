@@ -1,0 +1,10 @@
+def depes = rootProject.ext.depes
+def tis = rootProject.ext.tis
+def atis = rootProject.ext.atis
+
+dependencies {
+    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    depes.each { k, v -> implementation v }
+    tis.each { k, v -> testImplementation v }
+    atis.each { k, v -> androidTestImplementation v }
+}

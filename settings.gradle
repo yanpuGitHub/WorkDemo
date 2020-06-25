@@ -1,1 +1,1 @@
-include ':app', ':net', ':pic'
+include ':app', ':ijkplayer-java'
