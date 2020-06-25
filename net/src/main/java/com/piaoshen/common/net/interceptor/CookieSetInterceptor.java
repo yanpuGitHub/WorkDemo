@@ -7,9 +7,9 @@ import com.piaoshen.common.net.NetContext;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import dc.android.common.BaseApplication;
-import dc.common.Logger;
-import dc.common.utils.StringUtils;
+//import dc.android.common.BaseApplication;
+//import dc.common.Logger;
+//import dc.common.utils.StringUtils;
 import okhttp3.Cookie;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -35,14 +35,18 @@ public class CookieSetInterceptor implements Interceptor {
         if (!originalResponse.headers(HEADER_COOKIE_SET).isEmpty()) {
             List<Cookie> listCookie = Cookie.parseAll(request.url(), originalResponse.headers());
 
-            Logger.w(getClass().getSimpleName(), listCookie);
+//            Logger.w(getClass().getSimpleName(), listCookie);
 
             for (Cookie cookie : listCookie) {
                 if (null == cookie) continue;
-                SharedPreferences.Editor editor = BaseApplication.getContext().getSharedPreferences(NetContext.NAME_PREFERCE, Context.MODE_PRIVATE).edit();
-                Logger.w(getClass().getSimpleName(), cookie, cookie.domain(), cookie.name(), cookie.path(), cookie.value());
-                editor.putString(StringUtils.sub(cookie.domain(), "|", cookie.name()), cookie.toString());
-                editor.apply();
+                /**
+                 * 没有导入相关包暂时注释
+                 *
+                 *  SharedPreferences.Editor editor = BaseApplication.getContext().getSharedPreferences(NetContext.NAME_PREFERCE, Context.MODE_PRIVATE).edit();
+                 *  Logger.w(getClass().getSimpleName(), cookie, cookie.domain(), cookie.name(), cookie.path(), cookie.value());
+                 *  editor.putString(StringUtils.sub(cookie.domain(), "|", cookie.name()), cookie.toString());
+                 *  editor.apply();
+                 */
             }
         }
 

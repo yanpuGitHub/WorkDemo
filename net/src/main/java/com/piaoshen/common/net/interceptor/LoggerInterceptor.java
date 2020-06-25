@@ -20,7 +20,7 @@ public class LoggerInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        Logger.w(String.format("%s on %s%n%s", request.url(), chain.connection(), request.headers()));
+//        Logger.w(String.format("%s on %s%n%s", request.url(), chain.connection(), request.headers()));
         return chain.proceed(request);
     }
 }

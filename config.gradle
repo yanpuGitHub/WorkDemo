@@ -1,0 +1,134 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+def isRelease() {
+    Gradle gradle = getGradle()
+    String tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+
+    Pattern pattern;
+    if (tskReqStr.contains("assemble")) {
+        println tskReqStr
+        pattern = Pattern.compile("assemble(\\w*)(Release|Debug)")
+    } else {
+        pattern = Pattern.compile("generate(\\w*)(Release|Debug)")
+    }
+    Matcher matcher = pattern.matcher(tskReqStr)
+
+    if (matcher.find()) {
+        String task = matcher.group(0).toLowerCase()
+        println("[BuildType] Current task: " + task)
+        return task.contains("release")
+    } else {
+        println "[BuildType] NO MATCH FOUND"
+        return true;
+    }
+}
+
+ext {
+    gets = "gets"
+    vc = 1
+    vn = "1.0.0"
+    isRelease = isRelease()
+    // isModuleDebug = isModuleDebug()
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
+            minSdkVersion    : 19,
+            targetSdkVersion : 28,
+            versionCode      : vc,
+            versionName      : vn,
+            abiFilters       : "armeabi"
+    ]
+
+    aider = [
+            suffix     : ".debug",
+            PKG_DEBUG  : "",
+            PKG_RELEASE: ""
+    ]
+
+    //Version
+    supportLibrary = "28.0.0"
+    bridgeVersion = "latest.integration"
+    coreVersion = "latest.integration"
+    shellVersion = "latest.integration"
+
+    roomVersion = "1.0.0"
+    multidexVersion = "1.0.3"
+
+    rxjavaVersion = "2.2.9"
+    rxandroidVersion = "2.1.0"
+    retrofit2Version = "2.4.0"
+    okhttpVersion = "3.10.0"
+    gsonConvertVersion = "2.0.2"
+
+    daggerVersion = "2.21"
+    gsonVersion = "2.8.5"
+    butterknifeVersion = "9.0.0-rc1"
+
+    supportVersion = "latest.integration"
+
+    schemeVersion = "latest.release"
+    statVersion = "latest.release"
+    pushVersion = "latest.release"
+
+    netDebugVersion = "1.0.5-SNAPSHOT"
+    netVersion = "latest.release"
+    paysDebugVersion = "1.0.1-SNAPSHOT"
+    paysVersion = "latest.release"
+    bannerDebugVersion = "1.0.0-SNAPSHOT"
+    bannerVersion = "latest.release"
+    browserDebugVersion = "1.0.0-SNAPSHOT"
+    browserVersion = "latest.release"
+    lbsDebugVersion = "1.2.0-SNAPSHOT"
+    lbsVersion = "latest.release"
+    mapDebugVersion = "1.2.0-SNAPSHOT"
+    mapVersion = "latest.release"
+    ossDebugVersion = "1.0.0-SNAPSHOT"
+    ossVersion = "latest.release"
+    picDebugVersion = "1.0.0-SNAPSHOT"
+    picVersion = "latest.release"
+
+    adapterVersion = "latest.integration"
+    permissionVersion = "latest.integration"
+    swipeVersion = "latest.integration"
+
+
+    glideVersion = "4.9.0"
+
+    jpushVersion = "3.3.2"
+    jcoreVersion = "2.0.1"
+
+    amapVersion = "4.7.2"
+    buglyCrashVersion = "3.1.0"
+
+    alipayVersion = "15.6.5"
+    talkingDataVersion = "4.0.36"
+    baiduLbsVersion = "6.0.0"
+    baiduMapVersion = "6.0.0"
+
+
+    depes = [
+            "v7"         : "com.android.support:appcompat-v7:${supportLibrary}",
+            "constraint" : "com.android.support.constraint:constraint-layout:1.1.0",
+            "struct_core": "dc.android:core:${coreVersion}",
+            "t_support": "com.piaoshen:t_support:${supportVersion}",
+    ]
+
+    tis = [
+            "junit": "junit:junit:4.12",
+    ]
+
+    atis = [
+            "test"    : "com.android.support.test:runner:1.0.2",
+            "espresso": "com.android.support.test.espresso:espresso-core:3.0.2",
+    ]
+
+    runs = [
+
+    ]
+
+    keys = [
+
+    ]
+
+}

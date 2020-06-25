@@ -2,7 +2,8 @@ package com.piaoshen.common.net.interceptor;
 
 import java.io.IOException;
 
-import android.support.annotation.Nullable;
+import javax.annotation.Nullable;
+
 import okhttp3.Authenticator;
 import okhttp3.Request;
 import okhttp3.Response;
